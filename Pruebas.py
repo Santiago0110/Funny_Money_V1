@@ -35,3 +35,7 @@ print('El index de ' + cat_chosen + ' es = ' + str(indexCat))
 # Encuentra el índice de la opción elegida dentro de la categoría
 indexOpt = cats[cat_chosen].index(opt_chosen)
 print('El index de ' + opt_chosen + ' es = ' + str(indexOpt))
+
+#del cats_copy[cat_chosen][indexOpt]
+cats_act = removeOption(cats_copy,cat_chosen,indexOpt)
+

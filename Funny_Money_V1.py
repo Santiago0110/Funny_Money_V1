@@ -148,7 +148,7 @@ def encender():
 """--------------------------
 FUNCIÓN RONDA DE JUEGO
 --------------------------"""
-def dinamica(cats):
+def dinamica(cats_copy):
     # Selecciona el nombre de una categoría al random
     cat_chosen = random.choice(list(cats.keys()))
     print(cat_chosen)
@@ -166,6 +166,7 @@ def dinamica(cats):
     print('El index de ' + opt_chosen + ' es = ' + str(indexOpt))
     
     return cat_chosen,opt_chosen,indexCat,indexOpt
+
 
 """--------------------------
 FUNCIÓN MAIN (PRINCIPAL)
@@ -194,10 +195,6 @@ if __name__ == '__main__':
     print('\n' + 'INICIO DE JUEGO:')
     cat_chosen,opt_chosen,indexCat,indexOpt = dinamica(cats) 
     
-    
-    """
-    HOLAAAAAAAAAAAAAAA ESTAAAAAAAAAAAAA
-    ESSSSSSSSSSS UNAAAAAAAAAA VERSIOOOOOOOON NUEVAAAAAAA
-    """
+
     
     
