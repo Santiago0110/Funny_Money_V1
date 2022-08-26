@@ -6,6 +6,7 @@ Created on Fri Aug 26 11:22:56 2022
 """
 
 import random 
+import copy
 
 cats = {
     'Ganar Dinero': ['A1','A2','A3','A4','A5','A6','A7','A8'],
@@ -13,7 +14,7 @@ cats = {
     'Recompensas': ['C1','C2','C3','C4','C5','C6','C7','C8']     
 }
 
-cats_copy = cats.copy()
+cats2 = copy.deepcopy(cats)
 
 def removeOption(d,key,opt):
     r = dict(d)
@@ -37,5 +38,9 @@ indexOpt = cats[cat_chosen].index(opt_chosen)
 print('El index de ' + opt_chosen + ' es = ' + str(indexOpt))
 
 #del cats_copy[cat_chosen][indexOpt]
-cats_act = removeOption(cats_copy,cat_chosen,indexOpt)
+cats2 = removeOption(cats2,cat_chosen,indexOpt)
+
+#remove = {k:v for k,v in cats.items() if v != opt_chosen}
+
+#xxxxxxxxxx
 
