@@ -13,26 +13,25 @@ cats = {
     'Recompensas': ['C1','C2','C3','C4','C5','C6','C7','C8']     
 }
 
+cats_copy = cats.copy()
+
+def removeOption(d,key,opt):
+    r = dict(d)
+    del r[key][opt]
+    return r
+
 # Seleccionar el nombre de una categoría al random
 cat_chosen = random.choice(list(cats.keys()))
 print(cat_chosen)
 
 # Seleccionar una opción dentro de una categoría
-opt_chosen = random.choice(cats[cat_chosen][:])
+opt_chosen = random.choice(cats[cat_chosen])
 print(opt_chosen)
 
+# Encuentra el índice de la categoría elegida
+indexCat = list(cats.keys()).index(cat_chosen)
+print('El index de ' + cat_chosen + ' es = ' + str(indexCat))
 
-"""
-for key in categorias.keys():
-    print(key)
-
-print('\n')
-
-for value in categorias.values():
-    print(value)
-
-print('\n')
-    
-for key,value in categorias.items():
-    print(key,'-',value)
-"""
+# Encuentra el índice de la opción elegida dentro de la categoría
+indexOpt = cats[cat_chosen].index(opt_chosen)
+print('El index de ' + opt_chosen + ' es = ' + str(indexOpt))
