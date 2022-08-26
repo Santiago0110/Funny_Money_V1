@@ -130,7 +130,7 @@ def encender():
   msn_serial = 'READY_ON'
   print(msn_serial)
   
-  input('Bienvenido'+'\n'+'Presiona el botón para empezar: ')
+  input('Bienvenido a Funny Money'+'\n'+'Presiona el botón para empezar: ')
 
 """--------------------------
 FUNCIÓN ELEGIR CATEGORÍA
@@ -168,3 +168,5 @@ if __name__ == '__main__':
     print('\n' + 'DEPÓSITO INICIAL:')
     print('J1 = $' + str(J1.calcularSaldoTotal()))
     print('J2 = $' + str(J2.calcularSaldoTotal()))
+    
+    
