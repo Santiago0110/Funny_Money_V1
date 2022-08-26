@@ -169,4 +169,11 @@ if __name__ == '__main__':
     print('J1 = $' + str(J1.calcularSaldoTotal()))
     print('J2 = $' + str(J2.calcularSaldoTotal()))
     
+    # Inicia el juego
+    print('\n' + 'INICIO DE JUEGO:')
+
+    
+    
+    
+    
     
