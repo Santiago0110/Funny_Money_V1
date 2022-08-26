@@ -195,3 +195,9 @@ if __name__ == '__main__':
     cat_chosen,opt_chosen,indexCat,indexOpt = dinamica(cats) 
     
     
+    """
+    HOLAAAAAAAAAAAAAAA ESTAAAAAAAAAAAAA
+    ESSSSSSSSSSS UNAAAAAAAAAA VERSIOOOOOOOON NUEVAAAAAAA
+    """
+    
+    
