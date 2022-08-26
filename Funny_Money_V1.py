@@ -2,17 +2,30 @@
 """-----------------------------
 LIBRERÍAS Y VARIABLES GLOBALES
 -----------------------------"""
-from tqdm.auto import tqdm
-msn_serial = ''
+#from tqdm.auto import tqdm
+import random
+
+# Declaración de variables globales
+cat_chosen = ''
+opt_chosen = ''
+index_cat = 0
+index_opt = 0
+
+# Valor de dinero inicial
 depoIni = 20000
 
 # Lista de categorías
 cats = ['Ganar Dinero', 'Hacer Compras', 'Recompensas']
 
-#Lista de opciones por categoría
-ganarDinero = ['A1','A2','A3','A4','A5','A6','A7','A8']
-hacerCompras = ['B1','B2','B3','B4','B5','B6','B7','B8']
-recompensas = ['C1','C2','C3','C4','C5','C6','C7','C8']
+# Diccionario princial de categorías y opciones/categoria
+cats = {
+    'Ganar Dinero': ['A1','A2','A3','A4','A5','A6','A7','A8'],
+    'Hacer Compras': ['B1','B2','B3','B4','B5','B6','B7','B8'],
+    'Recompensas': ['C1','C2','C3','C4','C5','C6','C7','C8']     
+}
+
+# Copia de la lista original
+cats_copy = cats.copy()
 
 """-----------------------------
 DECLARACIÓN CLASE JUGADOR
@@ -133,18 +146,26 @@ def encender():
   input('Bienvenido a Funny Money'+'\n'+'Presiona el botón para empezar: ')
 
 """--------------------------
-FUNCIÓN ELEGIR CATEGORÍA
+FUNCIÓN RONDA DE JUEGO
 --------------------------"""
-# Retorna el nombre de la categoría elegida
-def elegirCat(lista):
-    pass
+def dinamica(cats):
+    # Selecciona el nombre de una categoría al random
+    cat_chosen = random.choice(list(cats.keys()))
+    print(cat_chosen)
 
-"""-------------------------------
-FUNCIÓN ELEGIR OPCIÓN DE CATEGORÍA
--------------------------------"""
-# Retorna una opción de la lista elegida
-def elegirOpcCat(cat):
-  pass
+    # Selecciona una opción dentro de la categoría elegida
+    opt_chosen = random.choice(cats[cat_chosen])
+    print(opt_chosen)
+
+    # Encuentra el índice de la categoría elegida
+    indexCat = list(cats.keys()).index(cat_chosen)
+    print('El index de ' + cat_chosen + ' es = ' + str(indexCat))
+
+    # Encuentra el índice de la opción elegida dentro de la categoría
+    indexOpt = cats[cat_chosen].index(opt_chosen)
+    print('El index de ' + opt_chosen + ' es = ' + str(indexOpt))
+    
+    return cat_chosen,opt_chosen,indexCat,indexOpt
 
 """--------------------------
 FUNCIÓN MAIN (PRINCIPAL)
@@ -171,9 +192,6 @@ if __name__ == '__main__':
     
     # Inicia el juego
     print('\n' + 'INICIO DE JUEGO:')
-
-    
-    
-    
+    cat_chosen,opt_chosen,indexCat,indexOpt = dinamica(cats) 
     
     
