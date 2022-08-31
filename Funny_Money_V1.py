@@ -14,9 +14,6 @@ index_opt = 0
 # Valor de dinero inicial
 depoIni = 20000
 
-# Lista de categorías
-cats = ['Ganar Dinero', 'Hacer Compras', 'Recompensas']
-
 # Diccionario princial de categorías y opciones/categoria
 cats = {
     'Ganar Dinero': ['A1','A2','A3','A4','A5','A6','A7','A8'],
@@ -151,11 +148,11 @@ FUNCIÓN RONDA DE JUEGO
 def dinamica(cats_copy):
     # Selecciona el nombre de una categoría al random
     cat_chosen = random.choice(list(cats.keys()))
-    print(cat_chosen)
+    print('La categoría seleccionada para esta ronda es: ' + cat_chosen)
 
     # Selecciona una opción dentro de la categoría elegida
     opt_chosen = random.choice(cats[cat_chosen])
-    print(opt_chosen)
+    print('La opción que te corresponde para '+ cat_chosen + 'es: ' + opt_chosen)
 
     # Encuentra el índice de la categoría elegida
     indexCat = list(cats.keys()).index(cat_chosen)
