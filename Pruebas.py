@@ -1,12 +1,22 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Aug 26 11:22:56 2022
+Created on Thu Sep  1 15:47:11 2022
 
-@author: usuario
+@author: LASSODS
 """
 
-import random 
+"""------------------------------------------------------
+LIBRERÍAS IMPORTADAS
+------------------------------------------------------"""
+import random
 import copy
+from collections import deque
+
+"""------------------------------------------------------
+DECLARACIÓN DE VARIABLES
+------------------------------------------------------"""
+cont_turno = 0
+turno = deque([1,2])
 
 cats = {
     'Ganar Dinero': ['A1','A2','A3','A4','A5','A6','A7','A8'],
@@ -15,46 +25,82 @@ cats = {
 }
 
 cats2 = copy.deepcopy(cats)
-cont = 0
-cat_chosen = ''
-cat_updt = []
+
+"""------------------------------------------------------
+DECLARACÍÓN DE FUNCIONES
+------------------------------------------------------"""
+def select_cat(opciones):
+    opciones = opciones
+    while True:
+        r = random.choice(opciones)
+        opciones.remove(r)
+        yield r
 
 def removeOption(d,key,opt):
     r = dict(d)
     del r[key][opt]
     return r
 
+def rotar_turno():
+	turno.rotate()
+	return turno[0]
 
-while cont < 3:
+"""------------------------------------------------------
+PROGRAMA PRINCIPAL
+------------------------------------------------------"""
+if __name__ == '__main__':
     
-    if cat_chosen:
-        
-        # Seleccionar el nombre de una categoría al random
-        cat_chosen = random.choice(list(cats2.keys()))
-        print(cat_chosen)
-        
-        # Seleccionar una opción dentro de una categoría
-        opt_chosen = random.choice(cats2[cat_chosen])
-        print(opt_chosen)
-        
-        #cat_updt = {k for k,v in cats2.items() if k != cat_chosen}
-        
-        # Encuentra el índice de la categoría elegida
-        indexCat = list(cats.keys()).index(cat_chosen)
-        print('El index de ' + cat_chosen + ' es = ' + str(indexCat))
-        
-        # Encuentra el índice de la opción elegida dentro de la categoría
-        indexOpt = cats[cat_chosen].index(opt_chosen)
-        print('El index de ' + opt_chosen + ' es = ' + str(indexOpt))
-        
-        # Elimina la opción de la lista
-        cats2 = removeOption(cats2,cat_chosen,indexOpt)
-        
-        cat_updt.append()
-        
-        cont += 1
-        
-    print(cats2)
+    # Indica a qué jugador le corresponde el turno
+    jugador = rotar_turno()
     
-    #remove = {k:v for k,v in cats.items() if v != opt_chosen}
+    if jugador == 2:    
+        categorias = list(cats2.keys())
+        
+        while cont_turno < 3:
+       
+            select = select_cat(categorias)
+            cat_selected = next(select)
+            
+            opt_selected = random.choice(cats[cat_selected])
+            index_opt = cats[cat_selected].index(opt_selected)
+            
+            removeOption(cats2,cat_selected,index_opt)
+            cont_turno+=1
 
+"""
+Código que elige una opción de una lista al random
+y la guarda en una variable SIN REPETIR
+"""
+# import random
+
+# def aleatorio(opciones):
+#     opciones = opciones
+#     while True:
+#         r = random.choice(opciones)
+#         opciones.remove(r)
+#         yield r
+
+# a = ['Ganar Dinero','Hacer Compras','Recompensas']
+# gen = aleatorio(a)
+
+# L1 = next(gen)
+# L2 = next(gen)
+# L3 = next(gen)
+
+"""
+Código para rotar turnos de jugador
+"""
+
+# from collections import deque
+ 
+# turno = deque(["1", "2"])
+# cont = 0
+
+# def rotar_turno():
+# 	turno.rotate()
+# 	return turno[0]
+
+# while cont <= 10:
+#     jugador = rotar_turno()
+#     print(jugador)
+#     cont+=1
