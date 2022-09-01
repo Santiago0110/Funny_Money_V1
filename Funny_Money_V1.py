@@ -172,6 +172,8 @@ if __name__ == '__main__':
     
     encender()
     
+    
+    
     # Instancia de objetos
     J1 = Jugador()
     J2 = Jugador()

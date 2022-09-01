@@ -60,7 +60,6 @@ if __name__ == '__main__':
             removeOption(cats2,cat_selected,index_opt)
             cont_turno+=1
 
-
 """
 Código que elige una opción de una lista al random
 y la guarda en una variable SIN REPETIR
