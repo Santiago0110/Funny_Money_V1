@@ -38,4 +38,3 @@ print('El index de ' + opt_chosen + ' es = ' + str(indexOpt))
 
 #del cats_copy[cat_chosen][indexOpt]
 cats_act = removeOption(cats_copy,cat_chosen,indexOpt)
-
