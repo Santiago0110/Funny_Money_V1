@@ -28,16 +28,45 @@ str_opciones = {
 'B6': """a) Comprar por $43.000 b) Comprar por $73.000 c) No hacer nada """,
 'B7': """a) Comprar por $55.000 b) Comprar por $38.000 c) No hacer nada """,
 'B8': """a) Comprar por $26.000 b) Comprar por $57.000 c) No hacer nada """,
-'C1': """a) b) c) No hacer nada """,
-'C2': """a) b) c) No hacer nada """,
-'C3': """a) b) c) No hacer nada """,
-'C4': """a) b) c) No hacer nada """,
-'C5': """a) b) c) No hacer nada """,
-'C6': """a) b) c) No hacer nada """,
-'C7': """a) b) c) No hacer nada """,
-'C8': """a) b) c) No hacer nada """,
+'C1': """a) Aceptar reto b) No aceptar""",
+'C2': """a) Aceptar reto b) No aceptar""",
+'C3': """a) Aceptar reto b) No aceptar""",
+'C4': """a) Aceptar reto b) No aceptar""",
+'C5': """a) Aceptar reto b) No aceptar""",
+'C6': """a) Aceptar reto b) No aceptar""",
+'C7': """a) Aceptar reto b) No aceptar""",
+'C8': """a) Aceptar reto b) No aceptar""",
 } 
+#-----------------------------------------------------
+def evaluar_opcion_elegida(jugador,opcion,decision):
 
+    if opcion == 'A1':
+
+        if decision == 'a':
+      
+            # El jugador debe ganar $130.000
+            cantidad = 130000
+            #banco.entregarDinero(cantidad)
+            #jugador.ganarDinero(cantidad)
+            print('El jugador ' + str(jugador) +' ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':
+                
+            # El banco debe entregar $233.000
+            cantidad = 233000
+            #banco.entregarDinero(cantidad)
+            #jugador.ganarDinero(cantidad)
+            print('El jugador ' + str(jugador) +' ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+
+    elif opcion == 'A2':
+        pass
+    
+    elif opcion == 'A3':
+        pass
+#-----------------------------------------------------
 def mostrar_opcion_elegida(opt,dic):
   for i in dic.keys():
     if opt == i:
@@ -87,16 +116,20 @@ jugador2 = Jugador(cats2,turnosxronda=3)
 for i in range(12):
     print("Turno",i+1, "  Ronda:",(i//3)+1, "  Etapa en la ronda:",(i%3)+1)
 
+    # Elige una opción para J1
     opt_J1 = jugador1.getAction(i)
     print("\n--> Acción jugador 1:", opt_J1)
     str_opt_elegida = mostrar_opcion_elegida(opt_J1,str_opciones)
     print(str_opt_elegida)
     decision_J1 = input('Elige una opción: ')
-    
+    evaluar_opcion_elegida('J1',opt_J1,decision_J1)
+
+    # Elige una opción para J2
     opt_J2 = jugador2.getAction(i)
     print("\n--> Acción jugador 2:", opt_J2)
     str_opt_elegida = mostrar_opcion_elegida(opt_J2,str_opciones)
     print(str_opt_elegida)
     decision_J2 = input('Elige una opción: ')
+    evaluar_opcion_elegida('J2',opt_J2,decision_J2)
 
     print("--------------------------------------")
