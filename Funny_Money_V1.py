@@ -2,17 +2,12 @@
 """-----------------------------
 LIBRERÍAS Y VARIABLES GLOBALES
 -----------------------------"""
-#from tqdm.auto import tqdm
 import random
-
-# Declaración de variables globales
-cat_chosen = ''
-opt_chosen = ''
-index_cat = 0
-index_opt = 0
+import copy
+from random import shuffle
 
 # Valor de dinero inicial
-depoIni = 20000
+depoIni = 100000
 
 # Diccionario princial de categorías y opciones/categoria
 cats = {
@@ -21,9 +16,108 @@ cats = {
     'Recompensas': ['C1','C2','C3','C4','C5','C6','C7','C8']     
 }
 
-# Copia de la lista original
-cats_copy = cats.copy()
+# String de todas las opciones
+str_opciones = {
+    
+'A1': """a) Ganar $130.000 b) Ganar $233.000 c) No hacer nada """,
+'A2': """a) Ganar $5.000 b) Ganar $3.000 c) No hacer nada """,
+'A3': """a) Ganar $95.500 b) Ganar $20.000 c) No hacer nada """,
+'A4': """a) Ganar $37.000 b) Ganar $67.000 c) No hacer nada """,
+'A5': """a) Ganar $39.000 b) Ganar $150.000 c) No hacer nada """,
+'A6': """a) Ganar $5.000 b) Ganar $3.000 c) No hacer nada """,
+'A7': """a) Ganar $28.000 b) Ganar $15.800 c) No hacer nada """,
+'A8': """a) Ganar $80.000 b) Ganar $50.000 c) No hacer nada """,
 
+'B1': """a) Comprar por $4.000 b) Comprar por $34.000 c) No hacer nada """,
+'B2': """a) Comprar por $20.000 b) Comprar por $67.000 c) No hacer nada """,
+'B3': """a) Comprar por $30.000 b) Comprar por $48.000 c) No hacer nada """,
+'B4': """a) Comprar por $15.000 b) Comprar por $15.000 c) No hacer nada """,
+'B5': """a) Comprar por $57.000 b) Comprar por $32.000 c) No hacer nada """,
+'B6': """a) Comprar por $43.000 b) Comprar por $73.000 c) No hacer nada """,
+'B7': """a) Comprar por $55.000 b) Comprar por $38.000 c) No hacer nada """,
+'B8': """a) Comprar por $26.000 b) Comprar por $57.000 c) No hacer nada """,
+
+'C1': """a) Aceptar reto b) No aceptar""",
+'C2': """a) Aceptar reto b) No aceptar""",
+'C3': """a) Aceptar reto b) No aceptar""",
+'C4': """a) Aceptar reto b) No aceptar""",
+'C5': """a) Aceptar reto b) No aceptar""",
+'C6': """a) Aceptar reto b) No aceptar""",
+'C7': """a) Aceptar reto b) No aceptar""",
+'C8': """a) Aceptar reto b) No aceptar""",
+} 
+"""-----------------------------------------------------
+Función que evalúa la decisión de un jugador
+-----------------------------------------------------"""
+def evaluar_opcion_elegida(jugador,opcion,decision):
+
+    if opcion == 'A1':
+
+        if decision == 'a':
+      
+            # El jugador debe ganar $130.000
+            cantidad = 130000
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':
+                
+            # El banco debe entregar $233.000
+            cantidad = 233000
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+
+    elif opcion == 'A2':
+        pass
+    
+    elif opcion == 'A3':
+        pass
+"""-----------------------------------------------------
+Función que muestra el String de la opción seleccionada
+-----------------------------------------------------"""
+def mostrar_opcion_elegida(opt,dic):
+  for i in dic.keys():
+    if opt == i:
+      opcion = dic[i]
+      return opcion
+"""-----------------------------
+DECLARACIÓN CLASE RONDA JUGADOR
+-----------------------------"""
+class RondaJugador(object):
+    
+    """-----------------------------------------
+    Método Constructor de la Clase Ronda Jugador
+    -----------------------------------------"""
+    def __init__(self, categorias, turnosxronda=3):
+        
+        self.turnosxronda = turnosxronda
+        self.categorias = copy.deepcopy(categorias)
+        total_turnos=0
+        cat =[]
+        
+        for k in categorias:
+            # Baraja las acciones de cada categoría
+            shuffle(self.categorias[k])
+            total_turnos+=len(self.categorias[k])
+            cat.append(k)
+        
+        self.rondasxcategoria = []
+        for ironda in range(total_turnos//turnosxronda):
+            temp = cat[:]
+            shuffle(temp)
+            self.rondasxcategoria +=temp 
+        
+    def getAction(self, numeroTurno):
+        ronda = numeroTurno//self.turnosxronda
+        categoria = self.rondasxcategoria[numeroTurno]
+        action = self.categorias[categoria][ronda]
+        return action
+    
 """-----------------------------
 DECLARACIÓN CLASE JUGADOR
 -----------------------------"""
@@ -92,7 +186,7 @@ class Banco(object):
         self.salidas = []
         self.totalEntradas = 0
         self.totalSalidas = 0
-        self.saldoInicial = 200000
+        self.saldoInicial = 2000000
         self.saldoTotal = 0
 
     """-----------------------------------------
@@ -132,38 +226,12 @@ FUNCIÓN ENCENDER
 def encender():
     
   print('BIENVENIDOS A FUNNY MONEY'+'\n')
-  
-  #for i in tqdm(range(10001)):
-  #  print(" ", end = '\r')
       
   print('\n'+'RP to Arduino -->')
   msn_serial = 'READY_ON'
   print(msn_serial)
   
   input('Bienvenido a Funny Money'+'\n'+'Presiona el botón para empezar: ')
-
-"""--------------------------
-FUNCIÓN RONDA DE JUEGO
---------------------------"""
-def dinamica(cats_copy):
-    # Selecciona el nombre de una categoría al random
-    cat_chosen = random.choice(list(cats.keys()))
-    print('La categoría seleccionada para esta ronda es: ' + cat_chosen)
-
-    # Selecciona una opción dentro de la categoría elegida
-    opt_chosen = random.choice(cats[cat_chosen])
-    print('La opción que te corresponde para '+ cat_chosen + 'es: ' + opt_chosen)
-
-    # Encuentra el índice de la categoría elegida
-    indexCat = list(cats.keys()).index(cat_chosen)
-    print('El index de ' + cat_chosen + ' es = ' + str(indexCat))
-
-    # Encuentra el índice de la opción elegida dentro de la categoría
-    indexOpt = cats[cat_chosen].index(opt_chosen)
-    print('El index de ' + opt_chosen + ' es = ' + str(indexOpt))
-    
-    return cat_chosen,opt_chosen,indexCat,indexOpt
-
 
 """--------------------------
 FUNCIÓN MAIN (PRINCIPAL)
@@ -190,4 +258,48 @@ if __name__ == '__main__':
     
     # Inicia el juego
     print('\n' + 'INICIO DE JUEGO:')
-    cat_chosen,opt_chosen,indexCat,indexOpt = dinamica(cats)
+    
+    # Inicia los jugadores
+    # Parte las opciones entre los dos jugadores
+    cats1={}
+    cats2={}
+    
+    for k in cats:
+      shuffle(cats[k])
+      cats1[k]=cats[k][:4]
+      cats2[k]=cats[k][4:]
+      
+    jugador1 = RondaJugador(cats1,turnosxronda=3)
+    jugador2 = RondaJugador(cats2,turnosxronda=3)
+    
+    """--------------------------
+    LOOP DE RONDAS DE JUEGO
+    --------------------------"""
+    for i in range(12):
+        print("Turno",i+1, "  Ronda:",(i//3)+1, "  Etapa en la ronda:",(i%3)+1)
+    
+        # Elige una opción para J1
+        opt_J1 = jugador1.getAction(i)
+        print("\n--> Acción jugador 1:", opt_J1)
+        str_opt_elegida = mostrar_opcion_elegida(opt_J1,str_opciones)
+        print(str_opt_elegida)
+        decision_J1 = input('Elige una opción: ')
+        evaluar_opcion_elegida(J1,opt_J1,decision_J1)
+        
+        # Actualizar saldo de banco y jugador
+        banco.calcularSaldoTotal()
+        J1.calcularSaldoTotal()
+    
+        # Elige una opción para J2
+        opt_J2 = jugador2.getAction(i)
+        print("\n--> Acción jugador 2:", opt_J2)
+        str_opt_elegida = mostrar_opcion_elegida(opt_J2,str_opciones)
+        print(str_opt_elegida)
+        decision_J2 = input('Elige una opción: ')
+        evaluar_opcion_elegida(J2,opt_J2,decision_J2)
+        
+        # Actualizar saldo de banco y jugador
+        banco.calcularSaldoTotal()
+        J2.calcularSaldoTotal()
+    
+        print("--------------------------------------")
