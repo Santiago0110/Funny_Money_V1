@@ -2,7 +2,6 @@
 """-----------------------------
 LIBRERÍAS Y VARIABLES GLOBALES
 -----------------------------"""
-import random
 import copy
 from random import shuffle
 
@@ -20,15 +19,15 @@ cats = {
 str_opciones = {
     
 'A1': """a) Ganar $130.000 b) Ganar $233.000 c) No hacer nada """,
-'A2': """a) Ganar $5.000 b) Ganar $3.000 c) No hacer nada """,
+'A2': """a) Ganar $45.000 b) Ganar $63.000 c) No hacer nada """,
 'A3': """a) Ganar $95.500 b) Ganar $20.000 c) No hacer nada """,
 'A4': """a) Ganar $37.000 b) Ganar $67.000 c) No hacer nada """,
 'A5': """a) Ganar $39.000 b) Ganar $150.000 c) No hacer nada """,
-'A6': """a) Ganar $5.000 b) Ganar $3.000 c) No hacer nada """,
+'A6': """a) Ganar $75.000 b) Ganar $59.000 c) No hacer nada """,
 'A7': """a) Ganar $28.000 b) Ganar $15.800 c) No hacer nada """,
 'A8': """a) Ganar $80.000 b) Ganar $50.000 c) No hacer nada """,
 
-'B1': """a) Comprar por $4.000 b) Comprar por $34.000 c) No hacer nada """,
+'B1': """a) Comprar por $26.000 b) Comprar por $44.000 c) No hacer nada """,
 'B2': """a) Comprar por $20.000 b) Comprar por $67.000 c) No hacer nada """,
 'B3': """a) Comprar por $30.000 b) Comprar por $48.000 c) No hacer nada """,
 'B4': """a) Comprar por $15.000 b) Comprar por $15.000 c) No hacer nada """,
@@ -49,21 +48,21 @@ str_opciones = {
 """-----------------------------------------------------
 Función que evalúa la decisión de un jugador
 -----------------------------------------------------"""
+#///////////////////////////////////////////////////////////////
+#///////////////////////////////////////////////////////////////
 def evaluar_opcion_elegida(jugador,opcion,decision):
 
     if opcion == 'A1':
 
         if decision == 'a':
-      
-            # El jugador debe ganar $130.000
+            # Valor: $130.000 --> El banco ENTREGAR y el jugador GANAR
             cantidad = 130000
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
     
-        if decision == 'b':
-                
-            # El banco debe entregar $233.000
+        if decision == 'b':     
+            # Valor: $233.000 --> El banco ENTREGAR y el jugador GANAR
             cantidad = 233000
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
@@ -71,12 +70,293 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
     
         if decision == 'c':
             pass
-
+        
     elif opcion == 'A2':
-        pass
+
+        if decision == 'a':
+            # Valor: $45.000 --> El banco ENTREGAR y el jugador GANAR
+            cantidad = 45000
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
     
-    elif opcion == 'A3':
-        pass
+        if decision == 'b':     
+            # Valor: $63.000 --> El banco ENTREGAR y el jugador GANAR
+            cantidad = 63000
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+        
+    if opcion == 'A3':
+
+        if decision == 'a':
+            # Valor: $95.500 --> El banco ENTREGAR y el jugador GANAR
+            cantidad = 95500
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':     
+            # Valor: $20.000 --> El banco ENTREGAR y el jugador GANAR
+            cantidad = 20000
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+        
+    if opcion == 'A4':
+
+        if decision == 'a':
+            # Valor: $37.000 --> El banco ENTREGAR y el jugador GANAR
+            cantidad = 37000
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':     
+            # Valor: $67.000 --> El banco ENTREGAR y el jugador GANAR
+            cantidad = 67000
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+        
+    if opcion == 'A5':
+
+        if decision == 'a':
+            # Valor: $39.000 --> El banco ENTREGAR y el jugador GANAR
+            cantidad = 39000
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':     
+            # Valor: $150.000 --> El banco ENTREGAR y el jugador GANAR
+            cantidad = 150000
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+        
+    if opcion == 'A6':
+
+        if decision == 'a':
+            # Valor: $75.000 --> El banco ENTREGAR y el jugador GANAR
+            cantidad = 75000
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':     
+            # Valor: $59.000 --> El banco ENTREGAR y el jugador GANAR
+            cantidad = 59000
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+        
+    if opcion == 'A7':
+
+        if decision == 'a':
+            # Valor: $28.000 --> El banco ENTREGAR y el jugador GANAR
+            cantidad = 28000
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':     
+            # Valor: $15.800 --> El banco ENTREGAR y el jugador GANAR
+            cantidad = 15800
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+        
+    if opcion == 'A8':
+
+        if decision == 'a':
+            # Valor: $80.000 --> El banco ENTREGAR y el jugador GANAR
+            cantidad = 80000
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':     
+            # Valor: $50.000 --> El banco ENTREGAR y el jugador GANAR
+            cantidad = 50000
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+
+    elif opcion == 'B1':
+        
+        if decision == 'a':
+            # Valor: $26.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 26000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':             
+            # Valor: $44.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 44000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+        
+    elif opcion == 'B2':
+        
+        if decision == 'a':
+            # Valor: $20.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 20000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':             
+            # Valor: $67.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 67000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+        
+    elif opcion == 'B3':
+        
+        if decision == 'a':
+            # Valor: $30.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 30000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':             
+            # Valor: $48.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 48000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+        
+    elif opcion == 'B4':
+        
+        if decision == 'a':
+            # Valor: $15.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 15000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':             
+            # Valor: $15.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 15000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+        
+    elif opcion == 'B5':
+        
+        if decision == 'a':
+            # Valor: $57.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 57000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':             
+            # Valor: $32.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 32000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+        
+    elif opcion == 'B6':
+        
+        if decision == 'a':
+            # Valor: $43.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 43000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':             
+            # Valor: $73.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 73000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+        
+    elif opcion == 'B7':
+        
+        if decision == 'a':
+            # Valor: $55.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 55000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':             
+            # Valor: $38.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 38000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+        
+    elif opcion == 'B8':
+        
+        if decision == 'a':
+            # Valor: $26.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 26000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'b':             
+            # Valor: $57.000 --> El banco RECIBIR y el jugador GASTAR
+            cantidad = 57000
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+    
+        if decision == 'c':
+            pass
+#///////////////////////////////////////////////////////////////
+#///////////////////////////////////////////////////////////////
 """-----------------------------------------------------
 Función que muestra el String de la opción seleccionada
 -----------------------------------------------------"""
