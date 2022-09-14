@@ -358,6 +358,29 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
 #///////////////////////////////////////////////////////////////
 #///////////////////////////////////////////////////////////////
 """-----------------------------------------------------
+Función que muestra los resultados finales el juego
+-----------------------------------------------------"""
+def mostrarResultados():
+    print('FIN DEL JUEGO')
+    print('--------------------')
+    
+    print('ENTRADAS Y SALIDAS:')
+    print('--------------------')
+    J1_ingresos = J1.calcularTotalIngresos()
+    J2_ingresos = J2.calcularTotalIngresos()
+    J1_egresos = J1.calcularTotalEgresos()
+    J2_egresos = J2.calcularTotalEgresos()
+    print('El JUGADOR 1 ganó: ${:,.2f}'.format(J1_ingresos).replace(".", ",").replace("@", ".") + ' y gastó: ${:,.2f}'.format(J1_egresos).replace(".", ",").replace("@", "."))
+    print('El JUGADOR 2 ganó: ${:,.2f}'.format(J2_ingresos).replace(".", ",").replace("@", ".") + ' y gastó: ${:,.2f}'.format(J2_egresos).replace(".", ",").replace("@", "."))
+    print('--------------------')    
+    print('SALDOS TOTALES:')
+    print('--------------------')
+    J1_saldo = J1.calcularSaldoTotal()
+    J2_saldo = J2.calcularSaldoTotal()
+    print('El saldo total del JUGADOR 1 es: ${:,.2f}'.format(J1_saldo).replace(".", ",").replace("@", "."))
+    print('El saldo total del JUGADOR 2 es: ${:,.2f}'.format(J2_saldo).replace(".", ",").replace("@", "."))
+    
+"""-----------------------------------------------------
 Función que muestra el String de la opción seleccionada
 -----------------------------------------------------"""
 def mostrar_opcion_elegida(opt,dic):
@@ -583,3 +606,5 @@ if __name__ == '__main__':
         J2.calcularSaldoTotal()
     
         print("--------------------------------------")   
+        
+    mostrarResultados()
