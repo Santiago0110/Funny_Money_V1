@@ -50,6 +50,9 @@ Función que evalúa la decisión de un jugador
 -----------------------------------------------------"""
 #///////////////////////////////////////////////////////////////
 #///////////////////////////////////////////////////////////////
+def ahorrar(jugador,valor):
+    jugador.ahorrarDinero(valor,10)
+    
 def evaluar_opcion_elegida(jugador,opcion,decision):
 
     if opcion == 'A1':
@@ -60,6 +63,14 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
+            
     
         if decision == 'b':     
             # Valor: $233.000 --> El banco ENTREGAR y el jugador GANAR
@@ -67,6 +78,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'c':
             pass
@@ -79,6 +97,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'b':     
             # Valor: $63.000 --> El banco ENTREGAR y el jugador GANAR
@@ -86,6 +111,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'c':
             pass
@@ -98,6 +130,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'b':     
             # Valor: $20.000 --> El banco ENTREGAR y el jugador GANAR
@@ -105,6 +144,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'c':
             pass
@@ -117,6 +163,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'b':     
             # Valor: $67.000 --> El banco ENTREGAR y el jugador GANAR
@@ -124,6 +177,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'c':
             pass
@@ -136,6 +196,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'b':     
             # Valor: $150.000 --> El banco ENTREGAR y el jugador GANAR
@@ -143,6 +210,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'c':
             pass
@@ -155,6 +229,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'b':     
             # Valor: $59.000 --> El banco ENTREGAR y el jugador GANAR
@@ -162,6 +243,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'c':
             pass
@@ -174,6 +262,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'b':     
             # Valor: $15.800 --> El banco ENTREGAR y el jugador GANAR
@@ -181,6 +276,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'c':
             pass
@@ -193,6 +295,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'b':     
             # Valor: $50.000 --> El banco ENTREGAR y el jugador GANAR
@@ -200,6 +309,13 @@ def evaluar_opcion_elegida(jugador,opcion,decision):
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
     
         if decision == 'c':
             pass
@@ -379,6 +495,14 @@ def mostrarResultados():
     J2_saldo = J2.calcularSaldoTotal()
     print('El saldo total del JUGADOR 1 es: ${:,.2f}'.format(J1_saldo).replace(".", ",").replace("@", "."))
     print('El saldo total del JUGADOR 2 es: ${:,.2f}'.format(J2_saldo).replace(".", ",").replace("@", "."))
+    print('--------------------')    
+    print('TOTAL AHORROS:')
+    print('--------------------')
+    J1_ahorros = J1.calcularTotalAhorros()
+    J2_ahorros = J2.calcularTotalAhorros()
+    print('El JUGADOR 1 ahorró: ${:,.2f}'.format(J1_ahorros).replace(".", ",").replace("@", "."))
+    print('El JUGADOR 2 ahorró: ${:,.2f}'.format(J2_ahorros).replace(".", ",").replace("@", "."))
+    
     
 """-----------------------------------------------------
 Función que muestra el String de la opción seleccionada
