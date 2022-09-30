@@ -29,7 +29,12 @@ int Tira_LED=2,Led_Banco=10;
 
 // variable for reading the pushbutton status
 int BPstate = 1;
-int RaspState = 0;        
+int RaspState = 0;    
+int ronda_active = 0;    
+
+char *s;
+String data[10];
+float saldoJ1=0,saldoJ2=0;
 
 void blink_luces(struct pt *pt)
 {
@@ -105,7 +110,7 @@ void setup()
   playerMP3.volume(volumeMP3);
   
   #ifdef DEBUG
-    Serial.println("o Setup acabou");
+    //Serial.println("o Setup acabou");
   #endif
 
   pinMode(BP,INPUT);
@@ -128,6 +133,27 @@ void setup()
 
   // Reproduce intro del juego
   playerMP3.playFolder(1, 1);
+}
+
+void leer_saldos_intro()
+{
+  String dato = Serial.readStringUntil('\n');
+  //Serial.println(dato);
+  s = strtok(dato.c_str(), ",");
+  int i=0;
+  while (s!=NULL)
+  {
+    data[i]=s;
+    s=strtok(NULL, ",");
+    i++;
+  }
+  //Serial.println("dato 1: "+data[0]);
+  //Serial.println("dato 2: "+data[1]);
+  //Serial.println("dato 3: "+data[2]);
+  //Serial.println("dato 4: "+data[3]);
+  saldoJ1 = data[1].toFloat();
+  saldoJ2 = data[3].toFloat();
+  Serial.println("Saldos actualizados: J1="+ String(saldoJ1)+" | J2="+String(saldoJ2));
 }
 
 void loop()
@@ -176,6 +202,7 @@ void loop()
         Serial.println("BP_PRESIONADO");
         delay(300);
         BPstate=0;
+        RaspState=0;
       }else{
           rutina_wait_BP(&ptWaitBP);
       }   
@@ -193,9 +220,29 @@ void loop()
 
       // Reproduce pista caja registradora
       playerMP3.playFolder(1, 3);
-      //String d = Serial.readStringUntil('\n');
+      leer_saldos_intro();
+      BPstate=1;
+      Serial.println("RETIRA EL DINERO DEL BANCO");
+
+      while(BPstate==1)
+      { 
+        if (digitalRead(BP) == HIGH)
+        {
+          Serial.println("BP_PRESIONADO");
+          delay(300);
+          BPstate=0;
+          ronda_active=1;
+        }else{
+          rutina_wait_BP(&ptWaitBP);
+          if (digitalRead(SB) == HIGH)
+          {
+            digitalWrite(Led_Banco,LOW);
+          }else{
+            digitalWrite(Led_Banco,HIGH);
+          }
+        }
+      }
     }
-    
   }
   delay(100); 
 }
