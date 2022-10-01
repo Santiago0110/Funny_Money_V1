@@ -10,12 +10,79 @@ DECLARACIÓN DE VARIABLES GLOBALES
 -------------------------------------------------"""
 # Cantidad de dinero inicial
 depoIni = 100000
+# Controla el numero de rodas que va ligado al numero de opciones x jugador
+numMaxRondas = 12 
 
 # Diccionario princial de categorías y opciones/categoria
 cats = {
     'Ganar Dinero': ['A1','A2','A3','A4','A5','A6','A7','A8'],
     'Hacer Compras': ['B1','B2','B3','B4','B5','B6','B7','B8'],
     'Recompensas': ['C1','C2','C3','C4','C5','C6','C7','C8']     
+}
+
+str_opciones = {
+    
+'A1': """a) Ganar $130.000 b) Ganar $233.000 c) No hacer nada """,
+'A2': """a) Ganar $45.000 b) Ganar $63.000 c) No hacer nada """,
+'A3': """a) Ganar $95.500 b) Ganar $20.000 c) No hacer nada """,
+'A4': """a) Ganar $37.000 b) Ganar $67.000 c) No hacer nada """,
+'A5': """a) Ganar $39.000 b) Ganar $150.000 c) No hacer nada """,
+'A6': """a) Ganar $75.000 b) Ganar $59.000 c) No hacer nada """,
+'A7': """a) Ganar $28.000 b) Ganar $15.800 c) No hacer nada """,
+'A8': """a) Ganar $80.000 b) Ganar $50.000 c) No hacer nada """,
+
+'B1': """a) Comprar por $26.000 b) Comprar por $44.000 c) No hacer nada """,
+'B2': """a) Comprar por $20.000 b) Comprar por $67.000 c) No hacer nada """,
+'B3': """a) Comprar por $30.000 b) Comprar por $48.000 c) No hacer nada """,
+'B4': """a) Comprar por $15.000 b) Comprar por $15.000 c) No hacer nada """,
+'B5': """a) Comprar por $57.000 b) Comprar por $32.000 c) No hacer nada """,
+'B6': """a) Comprar por $43.000 b) Comprar por $73.000 c) No hacer nada """,
+'B7': """a) Comprar por $55.000 b) Comprar por $38.000 c) No hacer nada """,
+'B8': """a) Comprar por $26.000 b) Comprar por $57.000 c) No hacer nada """,
+
+'C1': """a) Aceptar reto b) No aceptar""",
+'C2': """a) Aceptar reto b) No aceptar""",
+'C3': """a) Aceptar reto b) No aceptar""",
+'C4': """a) Aceptar reto b) No aceptar""",
+'C5': """a) Aceptar reto b) No aceptar""",
+'C6': """a) Aceptar reto b) No aceptar""",
+'C7': """a) Aceptar reto b) No aceptar""",
+'C8': """a) Aceptar reto b) No aceptar""",
+}
+
+cantidades = {
+    'A1' :  {
+        'a'  : 130000, 'b' : 233000},
+    'A2' :  {
+        'a'  : 45000, 'b' : 63000},
+    'A3' : {
+        'a'  : 95500, 'b' : 20000},
+    'A4' :  {
+        'a'  : 37000, 'b' : 67000},
+    'A5' : {
+        'a'  : 39000, 'b' : 150000},
+    'A6' : {
+        'a'  : 75000, 'b' : 59000},
+    'A7' : {
+        'a'  : 28000, 'b' : 15800},
+    'A8' : {
+        'a'  : 80000, 'b' : 50000},
+    'B1' :  {
+        'a'  : 26000, 'b' : 44000},
+    'B2' :  {
+        'a' :  20000, 'b' : 67000},
+    'B3' :  {
+        'a' : 30000, 'b' : 48000},
+    'B4' :  {
+        'a' : 15000,  'b' : 15000},
+    'B5' :  {
+        'a' : 57000,  'b' : 32000},
+    'B6' :  {
+        'a' : 43000,  'b' : 73000},
+    'B7' :  {
+        'a' : 55000,  'b' : 38000},
+    'B8' :  {
+        'a' : 26000,  'b' : 57000}
 }
 
 """-------------------------------------------------
@@ -125,8 +192,102 @@ class Banco(object):
     
     def calcularSaldoTotal(self):
         self.saldoTotal = self.saldoInicial + sum(self.entradas) - sum(self.salidas)
-        return self.saldoTotal 
+        return self.saldoTotal
 
+"""-----------------------------
+DECLARACIÓN CLASE RONDA JUGADOR
+-----------------------------"""
+class RondaJugador(object):
+    
+    """-----------------------------------------
+    Método Constructor de la Clase Ronda Jugador
+    -----------------------------------------"""
+    def __init__(self, categorias, turnosxronda=3):
+        
+        self.turnosxronda = turnosxronda
+        self.categorias = copy.deepcopy(categorias)
+        total_turnos=0
+        cat =[]
+        
+        for k in categorias:
+            # Baraja las acciones de cada categoría
+            shuffle(self.categorias[k])
+            total_turnos+=len(self.categorias[k])
+            cat.append(k)
+        
+        self.rondasxcategoria = []
+        for ironda in range(total_turnos//turnosxronda):
+            temp = cat[:]
+            shuffle(temp)
+            self.rondasxcategoria +=temp
+            
+    def getAction(self, numeroTurno):
+        ronda = numeroTurno//self.turnosxronda
+        categoria = self.rondasxcategoria[numeroTurno]
+        action = self.categorias[categoria][ronda]
+        return action
+
+"""------------------------------
+DECLARACIÓN FUNCIÓN DE EVALUACIÓN
+------------------------------"""
+def evaluar_opcion_elegida_JulianMendez(jugador,opcion,decision):
+    if opcion[0] == "A":
+        if decision != "c":
+            cantidad = cantidades[opcion][decision]
+            banco.entregarDinero(cantidad)
+            jugador.ganarDinero(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+        else:
+            pass
+
+    elif opcion[0] == "B":
+        if decision != "c":
+            cantidad = cantidad = cantidades[opcion][decision]
+            banco.recibirDinero(cantidad)
+            jugador.hacerCompras(cantidad)
+            print('El jugador ha ganado = $' + str(cantidad))
+        else:
+            pass
+
+    elif opcion[0] == "C":
+        if decision != "b":
+            pass
+        else:
+            pass
+"""-----------------------------------------------------
+Función que muestra el String de la opción seleccionada
+-----------------------------------------------------"""
+def mostrar_opcion_elegida(opt,dic):
+  for i in dic.keys():
+    if opt == i:
+      opcion = dic[i]
+      return opcion
+"""-----------------------------------------------------
+Función que muestra los resultados finales el juego
+-----------------------------------------------------"""
+def mostrarResultados():
+    print('FIN DEL JUEGO')
+    print('--------------------')
+    
+    print('ENTRADAS Y SALIDAS:')
+    print('--------------------')
+    J1_ingresos = J1.calcularTotalIngresos()
+    J2_ingresos = J2.calcularTotalIngresos()
+    J1_egresos = J1.calcularTotalEgresos()
+    J2_egresos = J2.calcularTotalEgresos()
+    print('El JUGADOR 1 ganó: ${:,.2f}'.format(J1_ingresos).replace(".", ",").replace("@", ".") + ' y gastó: ${:,.2f}'.format(J1_egresos).replace(".", ",").replace("@", "."))
+    print('El JUGADOR 2 ganó: ${:,.2f}'.format(J2_ingresos).replace(".", ",").replace("@", ".") + ' y gastó: ${:,.2f}'.format(J2_egresos).replace(".", ",").replace("@", "."))
+    print('--------------------')    
+    print('SALDOS TOTALES:')
+    print('--------------------')
+    J1_saldo = J1.calcularSaldoTotal()
+    J2_saldo = J2.calcularSaldoTotal()
+    print('El saldo total del JUGADOR 1 es: ${:,.2f}'.format(J1_saldo).replace(".", ",").replace("@", "."))
+    print('El saldo total del JUGADOR 2 es: ${:,.2f}'.format(J2_saldo).replace(".", ",").replace("@", "."))
+    
+"""-----------------------------
+DECLARACIÓN FUNCIONES SERIALES
+-----------------------------"""
 def leer_serial():
     lineBytes = ser.readline() #lee los datos del arduino
     line = lineBytes.decode('latin-1').strip()
@@ -191,24 +352,57 @@ while True:
         #print(l)
         escribir_serial(l)
         
-        print('\n' + 'INICIO DE JUEGO:')
-    
-#     if lectura == "INICIO":
-#     while (x==1):
-# 
-#         lineBytes = ser.readline() #lee los datos del arduino
-#         line = lineBytes.decode('latin-1').strip()
-#         print(line)
+    if lectura == "INI_RONDAS":
+        print('INICIO DE JUEGO:')
         
-#         if line == "GANAR":
-#             d1 = banco.sacarDinero(5000)
-#             d2 = banco.sacarDinero(3500)
-#             J1.ganarDinero(d1)
-#             J2.ganarDinero(d2)
-#             print ("El saldo de J1 es = ",J1.calcularSaldoTotal(),"Pesos")
-#             print ("El saldo de J2 es = ",J2.calcularSaldoTotal(),"Pesos")
-#             print ("El saldo del banco es = ",banco.calcularSaldoTotal(),"Pesos")
-#             
-#             l="MONEY"
-#             l2 = l.encode('latin-1')
-#             ser.write(l2)      
+        cats1={}
+        cats2={}
+        
+        for k in cats:
+          shuffle(cats[k])
+          cats1[k]=cats[k][:4]
+          cats2[k]=cats[k][4:]
+        
+        jugador1 = RondaJugador(cats1,turnosxronda=3)
+        jugador2 = RondaJugador(cats2,turnosxronda=3)
+        
+        """--------------------------
+        LOOP DE RONDAS DE JUEGO
+        --------------------------"""
+        for i in range(numMaxRondas):
+            
+            print("Turno",i+1, "  Ronda:",(i//3)+1, "  Etapa en la ronda:",(i%3)+1)
+            # Elige una opción para J1
+            opt_J1 = jugador1.getAction(i)
+            print("\n--> Acción jugador 1:", opt_J1)
+            str_opt_elegida = mostrar_opcion_elegida(opt_J1,str_opciones)
+            print(str_opt_elegida)
+            # Enviar trama de datos seriales
+            l="J1,"+str(opt_J1)
+            print(l)
+            escribir_serial(l)
+            decision_J1 = input('Elige una opción: ')
+            evaluar_opcion_elegida_JulianMendez(J1,opt_J1,decision_J1)
+            
+            # Actualizar saldo de banco y jugador
+            banco.calcularSaldoTotal()
+            J1.calcularSaldoTotal()
+        
+            # Elige una opción para J2
+            opt_J2 = jugador2.getAction(i)
+            print("\n--> Acción jugador 2:", opt_J2)
+            str_opt_elegida = mostrar_opcion_elegida(opt_J2,str_opciones)
+            print(str_opt_elegida)
+            # Enviar trama de datos seriales
+            l="J2,"+str(opt_J2)
+            print(l)
+            escribir_serial(l)
+            decision_J2 = input('Elige una opción: ')
+            evaluar_opcion_elegida_JulianMendez(J2,opt_J2,decision_J2)            
+            # Actualizar saldo de banco y jugador
+            banco.calcularSaldoTotal()
+            J2.calcularSaldoTotal()
+        
+            print("--------------------------------------")
+            
+        mostrarResultados()

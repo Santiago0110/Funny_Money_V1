@@ -35,6 +35,7 @@ int ronda_active = 0;
 char *s;
 String data[10];
 float saldoJ1=0,saldoJ2=0;
+String turno_jugador,opt_elegida;
 
 void blink_luces(struct pt *pt)
 {
@@ -106,7 +107,7 @@ void setup()
     while(true){delay(0);}
   }
   
-  Serial.println(F("DFPlayer iniciado"));
+  //Serial.println(F("DFPlayer iniciado"));
   playerMP3.volume(volumeMP3);
   
   #ifdef DEBUG
@@ -154,6 +155,24 @@ void leer_saldos_intro()
   saldoJ1 = data[1].toFloat();
   saldoJ2 = data[3].toFloat();
   Serial.println("Saldos actualizados: J1="+ String(saldoJ1)+" | J2="+String(saldoJ2));
+}
+
+void leer_rondas()
+{
+  String dato = Serial.readStringUntil('\n');
+  s = strtok(dato.c_str(), ",");
+  int i=0;
+  String data[10];
+  
+  while (s!=NULL)
+  {
+    data[i]=s;
+    s=strtok(NULL, ",");
+    i++;
+  }
+  turno_jugador = data[0];
+  opt_elegida = data[1];
+  //Serial.println("Turno: "+ turno_jugador +" | Opción: " + opt_elegida);
 }
 
 void loop()
@@ -223,12 +242,20 @@ void loop()
       leer_saldos_intro();
       BPstate=1;
       Serial.println("RETIRA EL DINERO DEL BANCO");
+      Serial.println("Y PRESIONA EL BOTON PARA CONTINUAR");
 
       while(BPstate==1)
       { 
         if (digitalRead(BP) == HIGH)
         {
-          Serial.println("BP_PRESIONADO");
+          Serial.println("INI_RONDAS");
+          digitalWrite(Led_J1,LOW);
+          digitalWrite(Led_J2,LOW);
+          digitalWrite(Led_GD,LOW);
+          digitalWrite(Led_HC,LOW);
+          digitalWrite(Led_RE,LOW);
+          digitalWrite(Led_Banco,LOW);
+          digitalWrite(Tira_LED,LOW);
           delay(300);
           BPstate=0;
           ronda_active=1;
@@ -242,6 +269,40 @@ void loop()
           }
         }
       }
+    }
+    while(ronda_active==1)
+    {
+      leer_rondas();
+      if(turno_jugador == "J1")
+      {
+        digitalWrite(Led_J1,HIGH);
+        digitalWrite(Led_J2,LOW);
+      }
+
+      if(turno_jugador == "J2")
+      {
+        digitalWrite(Led_J1,LOW);
+        digitalWrite(Led_J2,HIGH);
+      }
+
+      if (opt_elegida.charAt(0) == 'A') 
+      {
+        digitalWrite(Led_GD,HIGH);
+        digitalWrite(Led_HC,LOW);
+        digitalWrite(Led_RE,LOW);
+      } 
+      else if (opt_elegida.charAt(0) == 'B') 
+      {
+        digitalWrite(Led_GD,LOW);
+        digitalWrite(Led_HC,HIGH);
+        digitalWrite(Led_RE,LOW);
+      }   
+      else if (opt_elegida.charAt(0) == 'C') 
+      {
+        digitalWrite(Led_GD,LOW);
+        digitalWrite(Led_HC,LOW);
+        digitalWrite(Led_RE,HIGH);
+      } 
     }
   }
   delay(100); 
