@@ -302,7 +302,136 @@ void loop()
         digitalWrite(Led_GD,LOW);
         digitalWrite(Led_HC,LOW);
         digitalWrite(Led_RE,HIGH);
+      }
+      // IF DE REPRODUCCIÓN DE OPCIONES
+      if (opt_elegida == "A1") 
+      {
+        playerMP3.playFolder(1, 4);
+        int aa = 1;
+        while(aa==1)
+        {
+          if (analogRead(BS1) < 200)
+          {
+            playerMP3.playFolder(1, 3);
+            digitalWrite(Tira_LED,HIGH);
+            delay(200);
+            digitalWrite(Tira_LED,LOW);
+            aa=0;
+          }
+        }
       } 
+      else if (opt_elegida == "A2") 
+      {
+        playerMP3.playFolder(1, 5);
+        int aa = 1;
+        while(aa==1)
+        {
+          if (analogRead(BS1) < 200)
+          {
+            playerMP3.playFolder(1, 3);
+            digitalWrite(Tira_LED,HIGH);
+            delay(200);
+            digitalWrite(Tira_LED,LOW);
+            aa=0;
+          }
+        }
+      }
+      else if (opt_elegida == "A3") 
+      {
+        playerMP3.playFolder(1, 6);
+        int aa = 1;
+        while(aa==1)
+        {
+          if (analogRead(BS1) < 200)
+          {
+            playerMP3.playFolder(1, 3);
+            digitalWrite(Tira_LED,HIGH);
+            delay(200);
+            digitalWrite(Tira_LED,LOW);
+            aa=0;
+          }
+        }
+      }
+      else if (opt_elegida == "A4") 
+      {
+        playerMP3.playFolder(1, 7);
+        int aa = 1;
+        while(aa==1)
+        {
+          if (analogRead(BS1) < 200)
+          {
+            playerMP3.playFolder(1, 3);
+            digitalWrite(Tira_LED,HIGH);
+            delay(200);
+            digitalWrite(Tira_LED,LOW);
+            aa=0;
+          }
+        }
+      }
+      else if (opt_elegida == "A5") 
+      {
+        playerMP3.playFolder(1, 8);
+        int aa = 1;
+        while(aa==1)
+        {
+          if (analogRead(BS1) < 200)
+          {
+            playerMP3.playFolder(1, 3);
+            digitalWrite(Tira_LED,HIGH);
+            delay(200);
+            digitalWrite(Tira_LED,LOW);
+            aa=0;
+          }
+        }
+      }
+      else if (opt_elegida == "A6") 
+      {
+        playerMP3.playFolder(1, 9);
+        int aa = 1;
+        while(aa==1)
+        {
+          if (analogRead(BS1) < 200)
+          {
+            playerMP3.playFolder(1, 3);
+            digitalWrite(Tira_LED,HIGH);
+            delay(200);
+            digitalWrite(Tira_LED,LOW);
+            aa=0;
+          }
+        }
+      }
+      else if (opt_elegida == "A7") 
+      {
+        playerMP3.playFolder(1, 10);
+        int aa = 1;
+        while(aa==1)
+        {
+          if (analogRead(BS1) < 200)
+          {
+            playerMP3.playFolder(1, 3);
+            digitalWrite(Tira_LED,HIGH);
+            delay(200);
+            digitalWrite(Tira_LED,LOW);
+            aa=0;
+          }
+        }
+      }
+      else if (opt_elegida == "A8") 
+      {
+        playerMP3.playFolder(1, 11);
+        int aa = 1;
+        while(aa==1)
+        {
+          if (analogRead(BS1) < 200)
+          {
+            playerMP3.playFolder(1, 3);
+            digitalWrite(Tira_LED,HIGH);
+            delay(200);
+            digitalWrite(Tira_LED,LOW);
+            aa=0;
+          }
+        }
+      }
     }
   }
   delay(100); 
