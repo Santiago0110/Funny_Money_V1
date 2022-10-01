@@ -30,7 +30,8 @@ int Tira_LED=2,Led_Banco=10;
 // variable for reading the pushbutton status
 int BPstate = 1;
 int RaspState = 0;    
-int ronda_active = 0;    
+int ronda_active = 0;  
+int aa = 0;  
 
 char *s;
 String data[10];
@@ -88,6 +89,31 @@ void rutina_wait_BP(struct pt *pt)
     
   } while(true);
     PT_END(pt);
+}
+
+void btn_decisiones()
+{
+  // BT Selección 1: (a)
+  if (analogRead(BS1) < 500)
+  {pista_caja_registradora();aa=0;}
+  // BT Selección 2: (a)
+  else if (analogRead(BS2) < 200)
+  {pista_caja_registradora();aa=0;}
+  // BT Selección 3: (c)
+  else if (analogRead(BS3) < 100)
+  {aa=0;}
+}
+
+void pista_caja_registradora()
+{
+  playerMP3.playFolder(1, 3);
+  digitalWrite(Tira_LED,HIGH);
+  delay(200);
+  digitalWrite(Tira_LED,LOW);
+  delay(200);
+  digitalWrite(Tira_LED,HIGH);
+  delay(200);
+  digitalWrite(Tira_LED,LOW);
 }
 
 void setup()
@@ -303,135 +329,71 @@ void loop()
         digitalWrite(Led_HC,LOW);
         digitalWrite(Led_RE,HIGH);
       }
-      // IF DE REPRODUCCIÓN DE OPCIONES
+      //--------------------------------------------
+      // IF DE REPRODUCCIÓN DE OPCIONES GANAR DINERO
+      //--------------------------------------------
       if (opt_elegida == "A1") 
       {
         playerMP3.playFolder(1, 4);
-        int aa = 1;
+        aa = 1;
         while(aa==1)
-        {
-          if (analogRead(BS1) < 200)
-          {
-            playerMP3.playFolder(1, 3);
-            digitalWrite(Tira_LED,HIGH);
-            delay(200);
-            digitalWrite(Tira_LED,LOW);
-            aa=0;
-          }
-        }
+        {btn_decisiones();}
       } 
       else if (opt_elegida == "A2") 
       {
         playerMP3.playFolder(1, 5);
-        int aa = 1;
+        aa = 1;
         while(aa==1)
-        {
-          if (analogRead(BS1) < 200)
-          {
-            playerMP3.playFolder(1, 3);
-            digitalWrite(Tira_LED,HIGH);
-            delay(200);
-            digitalWrite(Tira_LED,LOW);
-            aa=0;
-          }
-        }
+        {btn_decisiones();}
       }
       else if (opt_elegida == "A3") 
       {
         playerMP3.playFolder(1, 6);
-        int aa = 1;
+        aa = 1;
         while(aa==1)
-        {
-          if (analogRead(BS1) < 200)
-          {
-            playerMP3.playFolder(1, 3);
-            digitalWrite(Tira_LED,HIGH);
-            delay(200);
-            digitalWrite(Tira_LED,LOW);
-            aa=0;
-          }
-        }
+        {btn_decisiones();}
       }
       else if (opt_elegida == "A4") 
       {
         playerMP3.playFolder(1, 7);
-        int aa = 1;
+        aa = 1;
         while(aa==1)
-        {
-          if (analogRead(BS1) < 200)
-          {
-            playerMP3.playFolder(1, 3);
-            digitalWrite(Tira_LED,HIGH);
-            delay(200);
-            digitalWrite(Tira_LED,LOW);
-            aa=0;
-          }
-        }
+        {btn_decisiones();}
       }
       else if (opt_elegida == "A5") 
       {
         playerMP3.playFolder(1, 8);
-        int aa = 1;
+        aa = 1;
         while(aa==1)
-        {
-          if (analogRead(BS1) < 200)
-          {
-            playerMP3.playFolder(1, 3);
-            digitalWrite(Tira_LED,HIGH);
-            delay(200);
-            digitalWrite(Tira_LED,LOW);
-            aa=0;
-          }
-        }
+        {btn_decisiones();}
       }
       else if (opt_elegida == "A6") 
       {
         playerMP3.playFolder(1, 9);
-        int aa = 1;
+        aa = 1;
         while(aa==1)
-        {
-          if (analogRead(BS1) < 200)
-          {
-            playerMP3.playFolder(1, 3);
-            digitalWrite(Tira_LED,HIGH);
-            delay(200);
-            digitalWrite(Tira_LED,LOW);
-            aa=0;
-          }
-        }
+        {btn_decisiones();}
       }
       else if (opt_elegida == "A7") 
       {
         playerMP3.playFolder(1, 10);
-        int aa = 1;
+        aa = 1;
         while(aa==1)
-        {
-          if (analogRead(BS1) < 200)
-          {
-            playerMP3.playFolder(1, 3);
-            digitalWrite(Tira_LED,HIGH);
-            delay(200);
-            digitalWrite(Tira_LED,LOW);
-            aa=0;
-          }
-        }
+        {btn_decisiones();}
       }
       else if (opt_elegida == "A8") 
       {
         playerMP3.playFolder(1, 11);
-        int aa = 1;
+        aa = 1;
         while(aa==1)
-        {
-          if (analogRead(BS1) < 200)
-          {
-            playerMP3.playFolder(1, 3);
-            digitalWrite(Tira_LED,HIGH);
-            delay(200);
-            digitalWrite(Tira_LED,LOW);
-            aa=0;
-          }
-        }
+        {btn_decisiones();}
       }
+      //---------------------------------------------
+      // IF DE REPRODUCCIÓN DE OPCIONES HACER COMPRAS
+      //---------------------------------------------
+//      else if (opt_elegida == "B1") 
+//      {
+//      }
     }
   }
   delay(100); 

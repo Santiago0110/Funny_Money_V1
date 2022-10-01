@@ -230,45 +230,58 @@ class RondaJugador(object):
 """------------------------------
 DECLARACIÓN FUNCIÓN DE EVALUACIÓN
 ------------------------------"""
-def evaluar_opcion_elegida_JulianMendez(jugador,opcion,decision):
+def ahorrar(jugador,valor):
+    jugador.ahorrarDinero(valor,10)
+
+def evaluar_opcion_elegida_opt(jugador,opcion,decision):
+    
     if opcion[0] == "A":
+        
         if decision != "c":
+            
             cantidad = cantidades[opcion][decision]
             banco.entregarDinero(cantidad)
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
+            
+            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            
+            if var_save == 'a':
+                ahorrar(jugador,cantidad)
+            else:
+                pass
+            
         else:
             pass
 
     elif opcion[0] == "B":
+        
         if decision != "c":
-            cantidad = cantidad = cantidades[opcion][decision]
+            
+            cantidad = cantidades[opcion][decision]
             banco.recibirDinero(cantidad)
             jugador.hacerCompras(cantidad)
-            print('El jugador ha ganado = $' + str(cantidad))
+            print('El jugador ha gastado = $' + str(cantidad))
+            
         else:
             pass
 
     elif opcion[0] == "C":
+        
         if decision != "b":
+            
             pass
         else:
             pass
-"""-----------------------------------------------------
-Función que muestra el String de la opción seleccionada
------------------------------------------------------"""
-def mostrar_opcion_elegida(opt,dic):
-  for i in dic.keys():
-    if opt == i:
-      opcion = dic[i]
-      return opcion
+#///////////////////////////////////////////////////////////////
+#///////////////////////////////////////////////////////////////
 """-----------------------------------------------------
 Función que muestra los resultados finales el juego
 -----------------------------------------------------"""
 def mostrarResultados():
+    
     print('FIN DEL JUEGO')
     print('--------------------')
-    
     print('ENTRADAS Y SALIDAS:')
     print('--------------------')
     J1_ingresos = J1.calcularTotalIngresos()
@@ -284,7 +297,22 @@ def mostrarResultados():
     J2_saldo = J2.calcularSaldoTotal()
     print('El saldo total del JUGADOR 1 es: ${:,.2f}'.format(J1_saldo).replace(".", ",").replace("@", "."))
     print('El saldo total del JUGADOR 2 es: ${:,.2f}'.format(J2_saldo).replace(".", ",").replace("@", "."))
-    
+    print('--------------------')    
+    print('TOTAL AHORROS:')
+    print('--------------------')
+    J1_ahorros = J1.calcularTotalAhorros()
+    J2_ahorros = J2.calcularTotalAhorros()
+    print('El JUGADOR 1 ahorró: ${:,.2f}'.format(J1_ahorros).replace(".", ",").replace("@", "."))
+    print('El JUGADOR 2 ahorró: ${:,.2f}'.format(J2_ahorros).replace(".", ",").replace("@", "."))
+
+"""-----------------------------------------------------
+Función que muestra el String de la opción seleccionada
+-----------------------------------------------------"""
+def mostrar_opcion_elegida(opt,dic):
+  for i in dic.keys():
+    if opt == i:
+      opcion = dic[i]
+      return opcion
 """-----------------------------
 DECLARACIÓN FUNCIONES SERIALES
 -----------------------------"""
@@ -382,7 +410,7 @@ while True:
             print(l)
             escribir_serial(l)
             decision_J1 = input('Elige una opción: ')
-            evaluar_opcion_elegida_JulianMendez(J1,opt_J1,decision_J1)
+            evaluar_opcion_elegida_opt(J1,opt_J1,decision_J1)
             
             # Actualizar saldo de banco y jugador
             banco.calcularSaldoTotal()
@@ -398,7 +426,7 @@ while True:
             print(l)
             escribir_serial(l)
             decision_J2 = input('Elige una opción: ')
-            evaluar_opcion_elegida_JulianMendez(J2,opt_J2,decision_J2)            
+            evaluar_opcion_elegida_opt(J2,opt_J2,decision_J2)            
             # Actualizar saldo de banco y jugador
             banco.calcularSaldoTotal()
             J2.calcularSaldoTotal()
@@ -406,4 +434,3 @@ while True:
             print("--------------------------------------")
             
         mostrarResultados()
-        el
