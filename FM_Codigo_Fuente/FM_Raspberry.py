@@ -244,13 +244,23 @@ def evaluar_opcion_elegida_opt(jugador,opcion,decision):
             jugador.ganarDinero(cantidad)
             print('El jugador ha ganado = $' + str(cantidad))
             
-            var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
-            
-            if var_save == 'a':
-                ahorrar(jugador,cantidad)
-            else:
-                pass
-            
+            #var_save = input('¿Quieres ahorrar el 10% de lo que acabas de ganar? a) Sí b) No: ')
+            # Enviar trama de datos seriales
+            l="AHORRO"
+            print(l)
+            escribir_serial(l)
+
+            wait=1
+            while(wait==1):
+                var_save = leer_serial()
+                print("FUNCIONAAAAA")
+                if var_save == "SI":
+                    ahorrar(jugador,cantidad)
+                    print("Ahorro exitoso")
+                    wait = 0
+                elif var_save == "NO":
+                    wait = 0
+                    
         else:
             pass
 
@@ -409,8 +419,26 @@ while True:
             l="J1,"+str(opt_J1)
             print(l)
             escribir_serial(l)
-            decision_J1 = input('Elige una opción: ')
-            evaluar_opcion_elegida_opt(J1,opt_J1,decision_J1)
+            # Toma de decisión Jugador 1
+            #decision_J1 = input('Elige una opción: ')
+            loopJ1 = 1
+            while(loopJ1==1):
+                lectura = leer_serial()
+                if lectura == "a":
+                    decision_J1 = "a"
+                    print(decision_J1)
+                    evaluar_opcion_elegida_opt(J1,opt_J1,decision_J1)
+                    loopJ1 = 0
+                elif lectura == "b":
+                    decision_J1 = "b"
+                    print(decision_J1)
+                    evaluar_opcion_elegida_opt(J1,opt_J1,decision_J1)
+                    loopJ1 = 0
+                elif lectura == "c":
+                    decision_J1 = "c"
+                    print(decision_J1)
+                    evaluar_opcion_elegida_opt(J1,opt_J1,decision_J1)
+                    loopJ1 = 0
             
             # Actualizar saldo de banco y jugador
             banco.calcularSaldoTotal()
@@ -425,8 +453,23 @@ while True:
             l="J2,"+str(opt_J2)
             print(l)
             escribir_serial(l)
-            decision_J2 = input('Elige una opción: ')
-            evaluar_opcion_elegida_opt(J2,opt_J2,decision_J2)            
+            #decision_J2 = input('Elige una opción: ')
+            loopJ2 = 1
+            while(loopJ2==1):
+                lectura = leer_serial()
+                if lectura == "a":
+                    decision_J2 = "a"
+                    evaluar_opcion_elegida_opt(J2,opt_J2,decision_J2)
+                    loopJ2 = 0
+                elif lectura == "b":
+                    decision_J2 = "b"
+                    evaluar_opcion_elegida_opt(J2,opt_J2,decision_J2)
+                    loopJ2 = 0
+                elif lectura == "c":
+                    decision_J2 = "c"
+                    evaluar_opcion_elegida_opt(J2,opt_J2,decision_J2)
+                    loopJ2 = 0
+            
             # Actualizar saldo de banco y jugador
             banco.calcularSaldoTotal()
             J2.calcularSaldoTotal()

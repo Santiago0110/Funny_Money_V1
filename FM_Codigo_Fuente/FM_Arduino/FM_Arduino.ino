@@ -32,6 +32,7 @@ int BPstate = 1;
 int RaspState = 0;    
 int ronda_active = 0;  
 int aa = 0;  
+int btn_state_ahorros=0;
 
 char *s;
 String data[10];
@@ -91,17 +92,57 @@ void rutina_wait_BP(struct pt *pt)
     PT_END(pt);
 }
 
-void btn_decisiones()
+void btn_decision_GD()
 {
   // BT Selección 1: (a)
   if (analogRead(BS1) < 500)
-  {pista_caja_registradora();aa=0;}
+  {Serial.println("a");pista_caja_registradora();}
+
+  // BT Selección 2: (B)
+  if (analogRead(BS2) < 200)
+  {Serial.println("b");pista_caja_registradora();}
+
+  // BT Selección 3: (c)
+  if (analogRead(BS3) < 100)
+  {Serial.println("c");aa=0;}
+
+  String dato = Serial.readStringUntil('\n');
+  if (dato == "AHORRO")
+  {
+    playerMP3.playFolder(1, 21);btn_state_ahorros=1;
+  }
+  while(btn_state_ahorros==1)
+  {
+    // Decide SI ahorrar
+    if (analogRead(BS1) < 500)
+    {Serial.println("SI");btn_state_ahorros=0;aa=0;}
+    // Decide NO ahorrar
+    else if (analogRead(BS2) < 200)
+    {Serial.println("NO");btn_state_ahorros=0;aa=0;}
+  }
+}
+
+void btn_decision_HC()
+{
+  // BT Selección 1: (a)
+  if (analogRead(BS1) < 500)
+  {Serial.println("a");pista_caja_registradora();aa=0;}
   // BT Selección 2: (a)
   else if (analogRead(BS2) < 200)
-  {pista_caja_registradora();aa=0;}
+  {Serial.println("b");pista_caja_registradora();aa=0;}
   // BT Selección 3: (c)
   else if (analogRead(BS3) < 100)
-  {aa=0;}
+  {Serial.println("c");aa=0;}
+}
+
+void btn_decision_RE()
+{
+  // BT Selección 1: (a)
+  if (analogRead(BS1) < 500)
+  {Serial.println("a");aa=0;}
+  // BT Selección 2: (a)
+  else if (analogRead(BS2) < 200)
+  {Serial.println("b");aa=0;}
 }
 
 void pista_caja_registradora()
@@ -235,7 +276,7 @@ void loop()
       digitalWrite(Led_Banco,HIGH);
       digitalWrite(Tira_LED,HIGH);
 
-      Serial.println("ENCENDIO LA RASPBERRY!");
+      //Serial.println("ENCENDIO LA RASPBERRY!");
       Serial.println("PRESIONA EL BOTON PRINCIPAL PARA INICIAR");
       RaspState=1;
     }
@@ -337,63 +378,123 @@ void loop()
         playerMP3.playFolder(1, 4);
         aa = 1;
         while(aa==1)
-        {btn_decisiones();}
+        {btn_decision_GD();}
       } 
       else if (opt_elegida == "A2") 
       {
         playerMP3.playFolder(1, 5);
         aa = 1;
         while(aa==1)
-        {btn_decisiones();}
+        {btn_decision_GD();}
       }
       else if (opt_elegida == "A3") 
       {
         playerMP3.playFolder(1, 6);
         aa = 1;
         while(aa==1)
-        {btn_decisiones();}
+        {btn_decision_GD;}
       }
       else if (opt_elegida == "A4") 
       {
         playerMP3.playFolder(1, 7);
         aa = 1;
         while(aa==1)
-        {btn_decisiones();}
+        {btn_decision_GD();}
       }
       else if (opt_elegida == "A5") 
       {
         playerMP3.playFolder(1, 8);
         aa = 1;
         while(aa==1)
-        {btn_decisiones();}
+        {btn_decision_GD();}
       }
       else if (opt_elegida == "A6") 
       {
         playerMP3.playFolder(1, 9);
         aa = 1;
         while(aa==1)
-        {btn_decisiones();}
+        {btn_decision_GD();}
       }
       else if (opt_elegida == "A7") 
       {
         playerMP3.playFolder(1, 10);
         aa = 1;
         while(aa==1)
-        {btn_decisiones();}
+        {btn_decision_GD();}
       }
       else if (opt_elegida == "A8") 
       {
         playerMP3.playFolder(1, 11);
         aa = 1;
         while(aa==1)
-        {btn_decisiones();}
+        {btn_decision_GD();}
       }
       //---------------------------------------------
       // IF DE REPRODUCCIÓN DE OPCIONES HACER COMPRAS
       //---------------------------------------------
-//      else if (opt_elegida == "B1") 
-//      {
-//      }
+      else if (opt_elegida == "B1") 
+      {
+        playerMP3.playFolder(1, 12);
+        aa = 1;
+        while(aa==1)
+        {btn_decision_HC();}
+      }
+      else if (opt_elegida == "B2") 
+      {
+        playerMP3.playFolder(1, 13);
+        aa = 1;
+        while(aa==1)
+        {btn_decision_HC();}
+      }
+      else if (opt_elegida == "B3") 
+      {
+        playerMP3.playFolder(1, 14);
+        aa = 1;
+        while(aa==1)
+        {btn_decision_HC();}
+      }
+      else if (opt_elegida == "B4") 
+      {
+        playerMP3.playFolder(1, 15);
+        aa = 1;
+        while(aa==1)
+        {btn_decision_HC();}
+      }
+      else if (opt_elegida == "B5") 
+      {
+        playerMP3.playFolder(1, 16);
+        aa = 1;
+        while(aa==1)
+        {btn_decision_HC();}
+      }
+      else if (opt_elegida == "B6") 
+      {
+        playerMP3.playFolder(1, 17);
+        aa = 1;
+        while(aa==1)
+        {btn_decision_HC();}
+      }
+      else if (opt_elegida == "B7") 
+      {
+        playerMP3.playFolder(1, 18);
+        aa = 1;
+        while(aa==1)
+        {btn_decision_HC();}
+      }
+      else if (opt_elegida == "B8") 
+      {
+        playerMP3.playFolder(1, 19);
+        aa = 1;
+        while(aa==1)
+        {btn_decision_HC();}
+      }
+      else if (opt_elegida == "C1" || opt_elegida == "C2" || opt_elegida == "C3" || opt_elegida == "C4" || opt_elegida == "C5" || opt_elegida == "C6" || opt_elegida == "C7" || opt_elegida == "C8") 
+      {
+        playerMP3.playFolder(1, 20);
+        aa = 1;
+        while(aa==1)
+        {btn_decision_RE();}
+      }
     }
   }
   delay(100); 
